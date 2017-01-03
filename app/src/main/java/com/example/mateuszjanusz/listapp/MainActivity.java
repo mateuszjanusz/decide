@@ -51,14 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     @Override
@@ -76,26 +68,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_clear) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Do you want to clear entire list?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    myList.clear();
-                    lv.setAdapter(adapter);
-                }
-            });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            builder.show();
+        
+        //DRAW
+        if (id == R.id.action_draw) {
             return true;
         }
 
+        //ADD
         if (id == R.id.action_add) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Add Item");
@@ -116,9 +95,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             builder.show();
-
         }
 
+        //CLEAR
+        if (id == R.id.action_clear) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Do you want to clear entire list?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myList.clear();
+                    lv.setAdapter(adapter);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
