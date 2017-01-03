@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import android.app.AlertDialog;
 import android.widget.EditText;
@@ -68,10 +69,31 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        
+
         //DRAW
         if (id == R.id.action_draw) {
-            return true;
+            if (myList.size() > 1) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("You should go for: ");
+                builder.setMessage(draw() + "!");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.show();
+            } else if (myList.size() <= 1){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Ups...");
+                builder.setMessage("You need to add more options!");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.show();
+            }
+
         }
 
         //ADD
@@ -100,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         //CLEAR
         if (id == R.id.action_clear) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Do you want to clear entire list?");
+            builder.setTitle("Do you want to clear the entire list?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -148,6 +170,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+    public String draw(){
+        Random randomGenerator;
+        randomGenerator = new Random();
+        int index = randomGenerator.nextInt(myList.size());
+        String option = myList.get(index);
+        return option;
     }
 
 }
