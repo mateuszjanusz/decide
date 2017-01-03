@@ -20,7 +20,11 @@ import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.view.View;
-
+import java.util.HashSet;
+import java.util.Set;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.app.Activity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        myList = new ArrayList<>();
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, myList);
+        myList = getArrayVal(getApplicationContext());
+       // myList = new ArrayList<>();
+        adapter = new ArrayAdapter(this, R.layout.mylist, myList);
         lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(adapter);
+
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, final int position, long id) {
@@ -73,9 +78,8 @@ public class MainActivity extends AppCompatActivity {
         //DRAW
         if (id == R.id.action_draw) {
             if (myList.size() > 1) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("You should go for: ");
-                builder.setMessage(draw() + "!");
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("You should go for " + draw() + "!");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 builder.show();
             } else if (myList.size() <= 1){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Ups...");
                 builder.setMessage("You need to add more options!");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -98,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         //ADD
         if (id == R.id.action_add) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Add Item");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+            builder.setTitle("Add new item:");
             final EditText input = new EditText(this);
             builder.setView(input);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     myList.add(preferredCase(input.getText().toString()));
                     Collections.sort(myList);
+                    storeArrayVal(myList, getApplicationContext());
                     lv.setAdapter(adapter);
                 }
             });
@@ -121,12 +126,13 @@ public class MainActivity extends AppCompatActivity {
 
         //CLEAR
         if (id == R.id.action_clear) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Do you want to clear the entire list?");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+            builder.setTitle("Clear the entire list?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     myList.clear();
+                    storeArrayVal(myList, getApplicationContext());
                     lv.setAdapter(adapter);
                 }
             });
@@ -153,13 +159,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void removeElement(String selectedItem, final int position){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Remove " + selectedItem + "?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 myList.remove(position);
                 Collections.sort(myList);
+                storeArrayVal(myList, getApplicationContext());
                 lv.setAdapter(adapter);
             }
         });
@@ -179,5 +186,23 @@ public class MainActivity extends AppCompatActivity {
         String option = myList.get(index);
         return option;
     }
+
+    public static void storeArrayVal( ArrayList<String> inArrayList, Context context)
+    {
+        Set<String> WhatToWrite = new HashSet<String>(inArrayList);
+        SharedPreferences WordSearchPutPrefs = context.getSharedPreferences("dbArrayValues", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = WordSearchPutPrefs.edit();
+        prefEditor.putStringSet("myArray", WhatToWrite);
+        prefEditor.commit();
+    }
+
+    public static ArrayList getArrayVal( Context dan)
+    {
+        SharedPreferences WordSearchGetPrefs = dan.getSharedPreferences("dbArrayValues",Activity.MODE_PRIVATE);
+        Set<String> tempSet = new HashSet<String>();
+        tempSet = WordSearchGetPrefs.getStringSet("myArray", tempSet);
+        return new ArrayList<String>(tempSet);
+    }
+
 
 }
