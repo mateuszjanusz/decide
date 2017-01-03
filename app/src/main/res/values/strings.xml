@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HELP ME CHOOSE</string>
+    <string name="action_clear">clear</string>
+    <string name="action_add">add item</string>
+</resources>
