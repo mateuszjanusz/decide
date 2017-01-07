@@ -3,22 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.mateuszjanusz.listapp.MainActivity">
 
-    <item android:id="@+id/action_draw"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_casino_white_48dp"
-        android:title="@string/action_draw"
-        app:showAsAction="ifRoom" />
+    <!--<item android:id="@+id/action_draw"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:icon="@drawable/ic_casino_white_48dp"-->
+        <!--android:title="@string/action_draw"-->
+        <!--app:showAsAction="ifRoom" />-->
 
-    <item android:id="@+id/action_add"
-        android:orderInCategory="200"
-        android:icon="@drawable/ic_add_circle_outline_white_48dp"
-        android:title="@string/action_add"
-        app:showAsAction="ifRoom" />
+    <!--<item android:id="@+id/action_add"-->
+        <!--android:orderInCategory="200"-->
+        <!--android:icon="@drawable/ic_add_circle_outline_white_48dp"-->
+        <!--android:title="@string/action_add"-->
+        <!--app:showAsAction="ifRoom" />-->
 
-    <item android:id="@+id/action_clear"
-        android:orderInCategory="300"
-        android:icon="@drawable/ic_clear_white_48dp"
-        android:title="@string/action_clear"
-        app:showAsAction="ifRoom" />
+    <!--<item android:id="@+id/action_clear"-->
+        <!--android:orderInCategory="300"-->
+        <!--android:icon="@drawable/ic_clear_white_48dp"-->
+        <!--android:title="@string/action_clear"-->
+        <!--app:showAsAction="ifRoom" />-->
 
 </menu>
