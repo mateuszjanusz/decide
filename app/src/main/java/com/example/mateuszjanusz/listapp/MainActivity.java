@@ -75,71 +75,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton add = (ImageButton)findViewById(R.id.add_button);
+//        ImageButton add = (ImageButton)findViewById(R.id.add_button);
+//
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("Add new item:");
-                final EditText input = new EditText(v.getContext());
-                builder.setView(input);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        myList.add(preferredCase(input.getText().toString()));
-                        Collections.sort(myList);
-                        storeArrayVal(myList, getApplicationContext());
-                        lv.setAdapter(adapter);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-            }
-        });
-
-        ImageButton clear = (ImageButton)findViewById(R.id.clear_button);
-
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (myList.size() == 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppCompatAlertDialogStyle);
-                    builder.setTitle("Ups...");
-                    builder.setMessage("There is nothing to clear!");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    builder.show();
-
-                } else if (myList.size() > 0){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppCompatAlertDialogStyle);
-                    builder.setTitle("Clear the entire list?");
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            myList.clear();
-                            storeArrayVal(myList, getApplicationContext());
-                            lv.setAdapter(adapter);
-                        }
-                    });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
+//        ImageButton clear = (ImageButton)findViewById(R.id.clear_button);
+//
+//        clear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -170,9 +122,62 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //ADD
-//        if (id == R.id.action_add) {
-//
-//        }
+        if (id == R.id.action_add) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+            builder.setTitle("Add new item:");
+            final EditText input = new EditText(this);
+            builder.setView(input);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myList.add(preferredCase(input.getText().toString()));
+                    Collections.sort(myList);
+                    storeArrayVal(myList, getApplicationContext());
+                    lv.setAdapter(adapter);
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+        }
+
+        //clear
+        if (id == R.id.action_clear){
+            if (myList.size() == 0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("Ups...");
+                builder.setMessage("There is nothing to clear!");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.show();
+
+            } else if (myList.size() > 0){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("Clear the entire list?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        myList.clear();
+                        storeArrayVal(myList, getApplicationContext());
+                        lv.setAdapter(adapter);
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -36,7 +36,7 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:id="@+id/draw_button"
-        android:src="@drawable/ic_casino_red_48dp"
+        android:src="@drawable/draw"
         android:contentDescription="@string/action_draw"
         android:clickable="true"
         android:layout_marginLeft="0dp"
@@ -49,37 +49,37 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:id="@+id/add_button"
-        android:src="@drawable/ic_add_circle_outline_red_48dp"
-        android:contentDescription="@string/action_add"
-        android:clickable="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@android:color/transparent"
-        android:adjustViewBounds="true"
-        android:baselineAlignBottom="false"
-        android:scaleType="fitCenter"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/draw_button" />
+    <!--<ImageButton-->
+        <!--android:layout_width="72dp"-->
+        <!--android:layout_height="72dp"-->
+        <!--android:id="@+id/add_button"-->
+        <!--android:src="@drawable/ic_add_circle_outline_red_48dp"-->
+        <!--android:contentDescription="@string/action_add"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_marginLeft="0dp"-->
+        <!--android:layout_marginRight="0dp"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:baselineAlignBottom="false"-->
+        <!--android:scaleType="fitCenter"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toEndOf="@+id/draw_button" />-->
 
-    <ImageButton
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:id="@+id/clear_button"
-        android:src="@drawable/ic_clear_red_48dp"
-        android:contentDescription="@string/action_clear"
-        android:clickable="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@android:color/transparent"
-        android:adjustViewBounds="true"
-        android:baselineAlignBottom="false"
-        android:scaleType="fitCenter"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/draw_button" />
+    <!--<ImageButton-->
+        <!--android:layout_width="72dp"-->
+        <!--android:layout_height="72dp"-->
+        <!--android:id="@+id/clear_button"-->
+        <!--android:src="@drawable/ic_clear_red_48dp"-->
+        <!--android:contentDescription="@string/action_clear"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_marginLeft="0dp"-->
+        <!--android:layout_marginRight="0dp"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:baselineAlignBottom="false"-->
+        <!--android:scaleType="fitCenter"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toStartOf="@+id/draw_button" />-->
 
 
 </RelativeLayout>

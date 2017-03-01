@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_casino_red_48dp"
-        android:label="Help Me Decide"
+        android:icon="@mipmap/icon"
+        android:label="Decide"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
